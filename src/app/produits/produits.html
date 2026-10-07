@@ -1,19 +1,36 @@
 <div class="container">
   <div class="card shadow mb-4">
     <div class="card-body">
-      <table>
+      <h2>Liste des Produits</h2>
+
+      <h3>Nombre : {{ produits.length }}</h3>
+
+      <table class="table table-striped">
         <thead>
           <tr>
-            <th>Liste de Produits</th>
+            <th>N°</th>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Date Création</th>
           </tr>
         </thead>
-        @for (produit of produits; track produit) {
-          <tbody>
+
+        <tbody>
+          @for (produit of produits; track produit.idProduit; let index = $index) {
             <tr>
-              <td>{{ produit }}</td>
+              <td>{{ index + 1 }}</td>
+              <td>{{ produit.idProduit }}</td>
+              <td>{{ produit.nomProduit }}</td>
+              <td>{{ produit.prixProduit }}</td>
+              <td>{{ produit.dateCreation | date: 'dd/MM/yyyy' }}</td>
             </tr>
-          </tbody>
-        }
+          } @empty {
+            <tr>
+              <td colspan="5" class="text-center">Aucun produit trouvé !</td>
+            </tr>
+          }
+        </tbody>
       </table>
     </div>
   </div>

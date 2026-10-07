@@ -1,22 +1,18 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ProduitService, Produit } from '../produit.service';
 
 @Component({
   selector: 'app-produits',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './produits.component.html',
-  styleUrl: './produits.component.css'
+  imports: [DatePipe],
+  templateUrl: './produits.html',
+  styleUrl: './produits.css'
 })
-export class ProduitsComponent implements OnInit  {
-  produits : string[]; //un tableau de chînes de caractères
+export class Produits {
 
-  constructor() {
-    this.produits = ["PC Asus", "Imprimante Epson", "Tablette Samsung"];
-   }
-  
-   ngOnInit() {
-     }
+  produits: Produit[] = [];
 
-
+  constructor(private produitService: ProduitService) {
+    this.produits = this.produitService.getProduits();
+  }
 }
